@@ -1,0 +1,13 @@
+[
+    {
+        "question_text": "Wat is de hoofdstad van Nederland?",
+        "question_type": "multiple_choice",
+        "options": ["Amsterdam", "Rotterdam", "Den Haag"],
+        "correct_answer": "Amsterdam"
+    },
+    {
+        "question_text": "Wat is 2 + 2?",
+        "question_type": "open",
+        "correct_answer": "4"
+    }
+]
