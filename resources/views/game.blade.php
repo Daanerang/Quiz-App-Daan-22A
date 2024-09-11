@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Spy Adventure</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/game') }}">Start Game</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <h1>Spy Adventure</h1>
 
     @if ($game->current_stage == 'intro')
