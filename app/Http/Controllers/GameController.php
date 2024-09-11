@@ -11,7 +11,8 @@ class GameController extends Controller
     // Start the game or load the saved game
     public function start()
     {
-        $game = Game::firstOrCreate(
+        // Create a new game or reset the existing game for the user
+        $game = Game::updateOrCreate(
             ['user_id' => Auth::id()],
             ['choices' => [], 'items' => [], 'current_stage' => 'intro']
         );
@@ -32,7 +33,9 @@ class GameController extends Controller
         // Save items if picked up
         if ($request->has('item')) {
             $items = $game->items;
-            $items[] = $request->input('item');
+            if (!in_array($request->input('item'), $items)) {
+                $items[] = $request->input('item');
+            }
             $game->items = $items;
         }
 
@@ -40,6 +43,6 @@ class GameController extends Controller
         $game->current_stage = $request->input('next_stage');
         $game->save();
 
-        return redirect()->route('game.start');
+        return view('game', ['game' => $game]);
     }
 }
