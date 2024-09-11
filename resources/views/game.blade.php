@@ -161,126 +161,153 @@
             <input type="hidden" name="next_stage" value="kill_pavlov">
             <button name="choice" value="kill_pavlov">Kill Pavlov and destroy the serum</button>
         </form>
-        <form action="{{ route('game.progress') }}" method="POST">
-            @csrf
-            <input type="hidden" name="next_stage" value="destroy_serum">
-            <button name="choice" value="destroy_serum">Destroy the serum and capture Pavlov</button>
-        </form>
     @elseif ($game->current_stage == 'destroy_serum')
-        <p>You manage to destroy the serum and capture Pavlov. You then make your way out of the base. Mission accomplished.
-        </p>
-        <form action="{{ route('game.start') }}" method="GET">
-            <button>Restart Game</button>
-        @elseif ($game->current_stage == 'kill_pavlov')
-            <p>You kill Pavlov and destroy the serum. You then make your way out of the base. Mission accomplished.</p>
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You manage to destroy the serum and capture Pavlov. You then make your way out of the base.
+                Mission accomplished.</p>
             <form action="{{ route('game.start') }}" method="GET">
-                <button>Restart Game</button>
+                <button type="submit" class="btn btn-primary">Restart Game</button>
             </form>
-        @elseif ($game->current_stage == 'explore_area')
-            <p>You find a guard’s uniform. Do you want to put it on?</p>
-            <form action="{{ route('game.progress') }}" method="POST">
+        </div>
+    @elseif ($game->current_stage == 'kill_pavlov')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You kill Pavlov and destroy the serum. You then make your way out of the base. Mission
+                accomplished.</p>
+            <form action="{{ route('game.start') }}" method="GET">
+                <button type="submit" class="btn btn-primary">Restart Game</button>
+            </form>
+        </div>
+    @elseif ($game->current_stage == 'explore_area')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You find a guard’s uniform. Do you want to put it on?</p>
+            <form action="{{ route('game.progress') }}" method="POST" class="mb-2">
                 @csrf
                 <input type="hidden" name="next_stage" value="wear_disguise">
-                <button name="choice" value="wear_disguise">Wear the disguise</button>
+                <button type="submit" class="btn btn-info" name="choice" value="wear_disguise">Wear the
+                    disguise</button>
             </form>
             <form action="{{ route('game.progress') }}" method="POST">
                 @csrf
                 <input type="hidden" name="next_stage" value="skip_disguise">
-                <button name="choice" value="skip_disguise">Continue without the disguise</button>
+                <button type="submit" class="btn btn-info" name="choice" value="skip_disguise">Continue without the
+                    disguise</button>
             </form>
-        @elseif ($game->current_stage == 'wear_disguise')
-            <p>You wear the guard’s uniform and manage to sneak past the guards. You find yourself in the main hall of the
-                base.
-                What will you do next?</p>
-            <form action="{{ route('game.progress') }}" method="POST">
+        </div>
+    @elseif ($game->current_stage == 'wear_disguise')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You wear the guard’s uniform and manage to sneak past the guards. You find yourself in the
+                main hall of the base. What will you do next?</p>
+            <form action="{{ route('game.progress') }}" method="POST" class="mb-2">
                 @csrf
                 <input type="hidden" name="next_stage" value="choose_item">
-                <button name="choice" value="explore_base">Explore the base</button>
+                <button type="submit" class="btn btn-info" name="choice" value="explore_base">Explore the
+                    base</button>
             </form>
             <form action="{{ route('game.progress') }}" method="POST">
                 @csrf
                 <input type="hidden" name="next_stage" value="head_to_target">
-                <button name="choice" value="head_to_target">Head straight to your target</button>
+                <button type="submit" class="btn btn-info" name="choice" value="head_to_target">Head straight to your
+                    target</button>
             </form>
-        @elseif ($game->current_stage == 'skip_disguise')
-            <p>You decide to skip the disguise and try to sneak past the guards. Unfortunately, you are spotted and the
-                guards
-                raise the alarm. You are captured and the mission is a failure.</p>
+        </div>
+    @elseif ($game->current_stage == 'skip_disguise')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You decide to skip the disguise and try to sneak past the guards. Unfortunately, you are
+                spotted and the guards raise the alarm. You are captured and the mission is a failure.</p>
             <form action="{{ route('game.start') }}" method="GET">
-                <button>Restart Game</button>
+                <button type="submit" class="btn btn-primary">Restart Game</button>
             </form>
-        @elseif ($game->current_stage == 'main_hall')
-            <p>You are in the main hall of the enemy's base. What do you want to do?</p>
-            <form action="{{ route('game.progress') }}" method="POST">
+        </div>
+    @elseif ($game->current_stage == 'main_hall')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You are in the main hall of the enemy's base. What do you want to do?</p>
+            <form action="{{ route('game.progress') }}" method="POST" class="mb-2">
                 @csrf
                 <input type="hidden" name="next_stage" value="choose_item">
-                <button name="choice" value="explore_base">Explore the base</button>
+                <button type="submit" class="btn btn-info" name="choice" value="explore_base">Explore the
+                    base</button>
             </form>
             <form action="{{ route('game.progress') }}" method="POST">
                 @csrf
                 <input type="hidden" name="next_stage" value="head_to_target">
-                <button name="choice" value="head_to_target">Head straight to your target</button>
+                <button type="submit" class="btn btn-info" name="choice" value="head_to_target">Head straight to your
+                    target</button>
             </form>
-        @elseif ($game->current_stage == 'choose_item')
-            <p>You see several items on the table. Which one will you take?</p>
+        </div>
+    @elseif ($game->current_stage == 'choose_item')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You see several items on the table. Which one will you take?</p>
+            <form action="{{ route('game.progress') }}" method="POST" class="mb-2">
+                @csrf
+                <input type="hidden" name="next_stage" value="final_mission">
+                <button type="submit" class="btn btn-secondary" name="item" value="key_card">Take the key
+                    card</button>
+            </form>
             <form action="{{ route('game.progress') }}" method="POST">
                 @csrf
                 <input type="hidden" name="next_stage" value="final_mission">
-                <button name="item" value="key_card">Take the key card</button>
+                <button type="submit" class="btn btn-secondary" name="item" value="weapon">Take the weapon</button>
             </form>
-            <form action="{{ route('game.progress') }}" method="POST">
-                @csrf
-                <input type="hidden" name="next_stage" value="final_mission">
-                <button name="item" value="weapon">Take the weapon</button>
-            </form>
-        @elseif ($game->current_stage == 'final_mission')
-            <p>You reach the final room with your items:
+        </div>
+    @elseif ($game->current_stage == 'final_mission')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You reach the final room with your items:
                 @foreach ($game->items as $item)
-                    {{ $item }},
+                    {{ $item }}@if (!$loop->last)
+                        ,
+                    @endif
                 @endforeach
             </p>
-            <p>Prepare for the final mission!</p>
-            <form action="{{ route('game.progress') }}" method="POST">
+            <p class="mb-4">Prepare for the final mission!</p>
+            <form action="{{ route('game.progress') }}" method="POST" class="mb-2">
                 @csrf
                 <input type="hidden" name="next_stage" value="head_to_target">
-                <button name="choice" value="head_to_target">Head straight to your target</button>
+                <button type="submit" class="btn btn-info" name="choice" value="head_to_target">Head straight to your
+                    target</button>
             </form>
-            <p>Or</p>
+            <p class="mb-2">Or</p>
             <form action="{{ route('game.progress') }}" method="POST">
                 @csrf
                 <input type="hidden" name="next_stage" value="explore_base">
-                <button name="choice" value="explore_base">Explore the base</button>
+                <button type="submit" class="btn btn-info" name="choice" value="explore_base">Explore the
+                    base</button>
             </form>
-        @elseif ($game->current_stage == 'throw_a_grenade')
-            <p>You throw the grenade but during the explosion, it also damages some highly explosive equipment, creating a
-                chain
-                reaction. Where do you take cover?</p>
-            <form action="{{ route('game.progress') }}" method="POST">
+        </div>
+    @elseif ($game->current_stage == 'throw_a_grenade')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You throw the grenade but during the explosion, it also damages some highly explosive
+                equipment, creating a chain reaction. Where do you take cover?</p>
+            <form action="{{ route('game.progress') }}" method="POST" class="mb-2">
                 @csrf
                 <input type="hidden" name="next_stage" value="hide_behind_door">
-                <button name="choice" value="hide_behind_door">Hide behind the lab door</button>
+                <button type="submit" class="btn btn-danger" name="choice" value="hide_behind_door">Hide behind the
+                    lab door</button>
             </form>
             <form action="{{ route('game.progress') }}" method="POST">
                 @csrf
                 <input type="hidden" name="next_stage" value="run_away">
-                <button name="choice" value="run_away">Run away in the hope of escaping</button>
+                <button type="submit" class="btn btn-danger" name="choice" value="run_away">Run away in the hope of
+                    escaping</button>
             </form>
-        @elseif ($game->current_stage == 'hide_behind_door')
-            <p>You hide behind the lab door, but the explosion is too powerful. The chain reaction from the equipment's
-                explosion causes the entire lab to collapse, and you are caught in the blast. Unfortunately, you do not
-                survive
-                the explosion. Mission failed.</p>
+        </div>
+    @elseif ($game->current_stage == 'hide_behind_door')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You hide behind the lab door, but the explosion is too powerful. The chain reaction from the
+                equipment's explosion causes the entire lab to collapse, and you are caught in the blast. Unfortunately, you
+                do not survive the explosion. Mission failed.</p>
             <form action="{{ route('game.start') }}" method="GET">
-                <button>Restart Game</button>
+                <button type="submit" class="btn btn-primary">Restart Game</button>
             </form>
-        @elseif ($game->current_stage == 'run_away')
-            <p>You sprint away from the explosion. As you run through the corridors, you hear the massive explosion behind
-                you.
-                The entire base is engulfed in flames and debris. You manage to escape the destruction and survive. Mission
-                accomplished.</p>
+        </div>
+    @elseif ($game->current_stage == 'run_away')
+        <div class="bg-light p-4 rounded shadow-sm">
+            <p class="mb-4">You sprint away from the explosion. As you run through the corridors, you hear the massive
+                explosion behind you. The entire base is engulfed in flames and debris. You manage to escape the destruction
+                and survive. Mission accomplished.</p>
             <form action="{{ route('game.start') }}" method="GET">
-                <button>Restart Game</button>
+                <button type="submit" class="btn btn-primary">Restart Game</button>
             </form>
+        </div>
     @endif
 
 @endsection
