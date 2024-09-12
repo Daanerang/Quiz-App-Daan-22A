@@ -45,4 +45,5 @@ class GameController extends Controller
 
         return view('game', ['game' => $game]);
     }
+    
 }
